@@ -11,22 +11,30 @@ namespace guess_the_number
             {
                 Random randomerare = new Random();
                 int nummer = randomerare.Next(1, 100);
-                int antalgissningar = 1;
+                int antalgissningar = 10;
                 int gissning = 101;
                 Console.WriteLine("Välkommen! Ett tal mellan 1-100 har slumpats ut.");
                 Console.WriteLine("Du har 10 chanser på dig att gissa rätt tal!");
                 while (nummer != gissning && antalgissningar < 11)
                 {
-                    Console.WriteLine("Gissning nummer {0}: ", antalgissningar);
+                    Console.WriteLine("Gissningar kvar: {0}", antalgissningar);
                     gissning = int.Parse(Console.ReadLine());
-                    antalgissningar++;
+                    antalgissningar--;
+                    if (gissning > nummer)
+                    {
+                        Console.WriteLine("Talet är mindre!");
+                    }
+                    else if (gissning < nummer)
+                    {
+                        Console.WriteLine("Talet är större!");
+                    }
                 }
                 if (nummer == gissning)
                 {
                     Console.WriteLine("Du lyckades gissa rätt med {0} försök kvar!", antalgissningar);
                     Console.WriteLine("Grattis!");
                 }
-                else if (antalgissningar > 10)
+                else if (antalgissningar == 0)
                 {
                     Console.WriteLine("Du har gissat för många gånger...");
                     Console.WriteLine("Du förlorar.");
