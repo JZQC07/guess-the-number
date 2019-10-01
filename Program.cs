@@ -15,10 +15,17 @@ namespace guess_the_number
                 int gissning = 101;
                 Console.WriteLine("Välkommen! Ett tal mellan 1-100 har slumpats ut.");
                 Console.WriteLine("Du har 10 chanser på dig att gissa rätt tal!");
-                while (nummer != gissning && antalgissningar < 11)
+                while (nummer != gissning && antalgissningar > 1)
                 {
                     Console.WriteLine("Gissningar kvar: {0}", antalgissningar);
-                    gissning = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        gissning = int.Parse(Console.ReadLine());
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Mata endast in siffror mellan 1-100!");
+                    }
                     antalgissningar--;
                     if (gissning > nummer)
                     {
@@ -40,7 +47,7 @@ namespace guess_the_number
                     Console.WriteLine("Du förlorar.");
                 }
                 Console.WriteLine("Spela igen?? [J] / [N]");
-                string playAgain = Console.ReadLine();
+                string playAgain = Console.ReadLine().ToUpper();
                 if(playAgain == "N")
                 {   
                     Console.WriteLine("Tryck valfri tangent för att avsluta programmet..");
